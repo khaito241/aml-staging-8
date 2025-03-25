@@ -1,4 +1,4 @@
-Datasett new_test {
+Dataset new_test {
   label: 'New Test test'
   description: ''
   data_source_name: 'demodb'
