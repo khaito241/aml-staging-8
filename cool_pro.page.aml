@@ -4,7 +4,7 @@ Dashboard cool_pro {
   block v1: VizBlock {
     label: 'USers'
     viz: DataTable {
-      dataset: ecommerce_test
+      dataset: ecommerce_test_
       fields: [
         VizFieldFull {
           ref: ref('ecommerce_users', 'id')
