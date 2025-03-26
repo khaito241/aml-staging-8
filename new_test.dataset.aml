@@ -1,5 +1,5 @@
 Dataset new_test {
-  label: 'New Test test'
+  label: 'New Test test 2222'
   description: ''
   data_source_name: 'demodb'
   models: [
