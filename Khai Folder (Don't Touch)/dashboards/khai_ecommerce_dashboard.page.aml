@@ -1,5 +1,5 @@
 Dashboard khai_ecommerce_dashboard {
-  title: 'Ecommerce Dashboard'
+  title: 'Ecommerce Dashboard (by Khai)'
   description: ''''''
   block title: TextBlock {
     content: @md # Ecommerce Dashboard;;
