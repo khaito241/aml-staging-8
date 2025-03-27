@@ -1,0 +1,220 @@
+Dashboard khai_ecommerce_dashboard {
+  title: 'Ecommerce Dashboard'
+  description: ''''''
+  block title: TextBlock {
+    content: @md # Ecommerce Dashboard;;
+  }
+  block v1: VizBlock {
+    label: 'Revenue compared with Revenue (Prev. 1m)'
+    viz: MetricKpi {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('orders', 'created_at')
+        operator: 'matches'
+        value: 'this month'
+      }
+      theme {
+
+      }
+      value: VizFieldFull {
+        ref: 'revenue'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      compare_value: VizPopSettings {
+        field: ref('orders', 'created_at')
+        duration: 1
+        granularity: 'month'
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        alignment: 'left'
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v2: VizBlock {
+    label: 'Total Orders'
+    viz: MetricKpi {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('orders', 'created_at')
+        operator: 'matches'
+        value: 'this month'
+      }
+      theme {
+
+      }
+      value: VizFieldFull {
+        ref: 'total_orders'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      compare_value: VizPopSettings {
+        field: ref('orders', 'created_at')
+        duration: 1
+        granularity: 'month'
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        alignment: 'left'
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v3: VizBlock {
+    label: 'Aov'
+    viz: MetricKpi {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('orders', 'created_at')
+        operator: 'matches'
+        value: 'this month'
+      }
+      theme {
+
+      }
+      value: VizFieldFull {
+        ref: 'aov'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      compare_value: VizPopSettings {
+        field: ref('orders', 'created_at')
+        duration: 1
+        granularity: 'month'
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        alignment: 'left'
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v4: VizBlock {
+    label: 'Revenue Over Time'
+    viz: LineChart {
+      dataset: khai_ecommerce
+      theme {
+
+      }
+      x_axis: VizFieldFull {
+        ref: ref('orders', 'created_at')
+        transformation: 'datetrunc month'
+        format {
+          type: 'date'
+          pattern: 'LLL yyyy'
+        }
+      }
+      y_axis {
+        series {
+          field: VizFieldFull {
+            ref: 'revenue'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+        }
+      }
+      settings {
+        row_limit: 5000
+        x_axis_show_null_datetime: false
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v5: VizBlock {
+    label: 'Revenue by Status'
+    viz: PieChart {
+      dataset: khai_ecommerce
+      theme {
+
+      }
+      legend: VizFieldFull {
+        ref: ref('orders', 'status')
+        format {
+          type: 'text'
+        }
+      }
+      series {
+        field: VizFieldFull {
+          ref: 'revenue'
+          format {
+            type: 'number'
+            pattern: '#,###'
+          }
+        }
+      }
+      settings {
+        display_as_donut: true
+        row_limit: 5000
+        legend_label: 'hidden'
+        show_percentage: true
+        data_label_position: 'outside'
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+
+  view: CanvasLayout {
+    label: 'View 1'
+    height: 660
+    grid_size: 20
+    block title {
+      position: pos(20, 20, 1160, 80)
+    }
+    block v1 {
+      position: pos(20, 120, 240, 140)
+      layer: 1
+    }
+    block v2 {
+      position: pos(300, 120, 240, 140)
+      layer: 2
+    }
+    block v3 {
+      position: pos(580, 120, 240, 140)
+      layer: 3
+    }
+    block v4 {
+      position: pos(20, 300, 520, 300)
+      layer: 4
+    }
+    block v5 {
+      position: pos(560, 300, 440, 300)
+      layer: 5
+    }
+    mobile {
+      mode: 'auto'
+    }
+  }
+
+  theme: H.themes.classic
+}
