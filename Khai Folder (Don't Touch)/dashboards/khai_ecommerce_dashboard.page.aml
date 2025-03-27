@@ -183,20 +183,106 @@ Dashboard khai_ecommerce_dashboard {
       }
     }
   }
+  block v6: VizBlock {
+    label: 'Top Selling Products'
+    viz: BarChart {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('products', 'name')
+        operator: 'top'
+        value: 5
+        options {
+          rank_by {
+            field: 'revenue'
+            aggregation: 'custom'
+            logic: 'standard'
+          }
+        }
+      }
+      theme {
+
+      }
+      x_axis: VizFieldFull {
+        label: 'Product Name'
+        ref: ref('products', 'name')
+        format {
+          type: 'text'
+        }
+      }
+      y_axis {
+        series {
+          field: VizFieldFull {
+            ref: 'revenue'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+          settings {
+            color: '#18A59E'
+          }
+        }
+      }
+      settings {
+        row_limit: 5000
+        x_axis_label: 'Product Name'
+        x_axis_show_null_datetime: false
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v7: VizBlock {
+    label: 'Sales by Category'
+    viz: PieChart {
+      dataset: khai_ecommerce
+      theme {
+
+      }
+      legend: VizFieldFull {
+        label: 'Category'
+        ref: ref('categories', 'name')
+        format {
+          type: 'text'
+        }
+      }
+      series {
+        field: VizFieldFull {
+          ref: 'revenue'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      }
+      settings {
+        row_limit: 5000
+        legend_label: 'hidden'
+        group_values_into: 7
+        data_label_position: 'outside'
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
 
   view: CanvasLayout {
     label: 'View 1'
-    height: 660
+    height: 1020
     grid_size: 20
     block title {
-      position: pos(20, 20, 1160, 80)
+      position: pos(20, 20, 800, 80)
     }
     block v1 {
-      position: pos(20, 120, 240, 140)
+      position: pos(20, 120, 260, 140)
       layer: 1
     }
     block v2 {
-      position: pos(300, 120, 240, 140)
+      position: pos(300, 120, 260, 140)
       layer: 2
     }
     block v3 {
@@ -204,16 +290,25 @@ Dashboard khai_ecommerce_dashboard {
       layer: 3
     }
     block v4 {
-      position: pos(20, 300, 520, 300)
+      position: pos(20, 300, 400, 300)
       layer: 4
     }
     block v5 {
-      position: pos(560, 300, 440, 300)
+      position: pos(440, 300, 380, 300)
       layer: 5
+    }
+    block v6 {
+      position: pos(20, 620, 400, 340)
+      layer: 6
+    }
+    block v7 {
+      position: pos(440, 620, 380, 340)
+      layer: 7
     }
     mobile {
       mode: 'auto'
     }
+    width: 860
   }
 
   theme: H.themes.classic

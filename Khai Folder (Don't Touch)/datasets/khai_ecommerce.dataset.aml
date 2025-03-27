@@ -10,7 +10,8 @@ Dataset khai_ecommerce {
     countries,
     merchants,
     products,
-    cities
+    cities,
+    categories
   ]
 
   relationships: [
@@ -21,6 +22,7 @@ Dataset khai_ecommerce {
     relationship(order_items.product_id > products.id, true),
     relationship(products.merchant_id > merchants.id, true),
     relationship(merchants.city_id > cities.id, false),
+    relationship(products.category_id > categories.id, true)
   ]
 
   owner: 'khai.to@holistics.io'

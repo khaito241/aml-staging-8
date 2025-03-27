@@ -1,4 +1,4 @@
-Model khai_categories {
+Model categories {
   type: 'table'
   label: 'Categories'
   description: ''
