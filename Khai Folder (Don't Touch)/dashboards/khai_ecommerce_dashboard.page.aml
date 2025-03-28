@@ -137,6 +137,22 @@ Dashboard khai_ecommerce_dashboard {
             }
           }
         }
+        series {
+          field: VizFieldFull {
+            label: 'Trend line of Revenue'
+            ref: 'revenue'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+            analytic: RegressionLine {
+              type: 'linear'
+            }
+          }
+          settings {
+            line_style: 'dashed'
+          }
+        }
       }
       settings {
         row_limit: 5000
