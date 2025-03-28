@@ -1,4 +1,4 @@
-Dataset ecommerce_test_ {
+Dataset ecommerce_test {
   label: 'Ecommerce'
   models: [ecommerce_users, ecommerce_products, ecommerce_orders, ecommerce_order_items, dim_dates]
   relationships: [
