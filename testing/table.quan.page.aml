@@ -28,7 +28,7 @@ Dashboard table {
             bg_color: '#0D1778FF'
             font_size: 10
             cell_padding: 1
-            border_visibility {
+            borders {
               outer: true
               vertical: true
               row_header: true
@@ -95,7 +95,7 @@ Dashboard table {
       theme {
         table {
           general {
-            border_visibility {
+            borders {
               outer: true
               vertical: true
               horizontal: true

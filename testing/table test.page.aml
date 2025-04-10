@@ -37,14 +37,7 @@ Dashboard new_reporting_dac {
     viz: DataTable {
       dataset: _123
       theme {
-        table {
-          general {
-            border_visibility {
-              outer: true
-              row_header: true
-            }
-          }
-        }
+
       }
       fields: [
         VizFieldFull {
@@ -160,15 +153,15 @@ Dashboard new_reporting_dac {
       theme {
         table {
           general {
-            bg_color: '#F2ECF2'
+            bg_color: '#E9EFFB'
             font_size: 12
-            cell_padding: DetailedSpacing {
-              top: 2
+            cell_padding {
+              top: 5
               left: 4
-              bottom: 2
+              bottom: 5
               right: 4
             }
-            border_visibility {
+            borders {
               outer: true
               header: true
               row_header: true
@@ -282,7 +275,9 @@ Dashboard new_reporting_dac {
         }
       ]
       settings {
+        show_row_total: true
         show_column_total: true
+        show_sub_total: true
         row_limit: 5000
         aggregate_awareness {
           enabled: true
@@ -317,7 +312,7 @@ Dashboard new_reporting_dac {
         table {
           general {
             bg_color: '#FEDBDB'
-            border_visibility {
+            borders {
               outer: true
               header: true
               row_header: true
