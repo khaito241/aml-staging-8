@@ -298,7 +298,9 @@ Dashboard new_reporting_dac {
         }
       ]
       settings {
+        show_row_total: true
         show_column_total: true
+        show_sub_total: true
         row_limit: 5000
         aggregate_awareness {
           enabled: true
