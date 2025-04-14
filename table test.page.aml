@@ -12,7 +12,7 @@ Dashboard new_reporting_dac {
       position: pos(30, 40, 590, 310)
     }
     block v5 {
-      position: pos(30, 410, 1190, 480)
+      position: pos(30, 420, 1190, 480)
       layer: 1
     }
     block v6 {
@@ -39,7 +39,7 @@ Dashboard new_reporting_dac {
       theme {
         table {
           general {
-            border_visibility {
+            borders {
               outer: true
               row_header: true
             }
@@ -94,7 +94,15 @@ Dashboard new_reporting_dac {
       theme {
         table {
           general {
-            bg_color: '#E9EFFB'
+            bg_color: 'pink'
+            banding_color: 'trasparent'
+            font_size: 12
+            cell_padding {
+              top: 5
+              left: 4
+              bottom: 5
+              right: 4
+            }
           }
         }
       }
@@ -136,6 +144,7 @@ Dashboard new_reporting_dac {
         }
       ]
       settings {
+        row_height: 'multiple_lines'
         show_row_number: true
         aggregate_awareness {
           enabled: true
@@ -160,19 +169,26 @@ Dashboard new_reporting_dac {
       theme {
         table {
           general {
-            bg_color: '#F2ECF2'
-            font_size: 12
-            cell_padding: DetailedSpacing {
-              top: 2
-              left: 4
-              bottom: 2
-              right: 4
-            }
-            border_visibility {
+            bg_color: '#C5E8E7'
+            borders {
               outer: true
+              vertical: true
+              horizontal: true
               header: true
               row_header: true
             }
+          }
+          header {
+            bg_color: 'blue'
+          }
+          row_header {
+            bg_color: 'red'
+          }
+          column_header {
+            bg_color: 'yellow'
+          }
+          sub_header {
+            bg_color: 'green'
           }
         }
       }
@@ -317,7 +333,7 @@ Dashboard new_reporting_dac {
         table {
           general {
             bg_color: '#FEDBDB'
-            border_visibility {
+            borders {
               outer: true
               header: true
               row_header: true
@@ -447,4 +463,5 @@ Dashboard new_reporting_dac {
   block t1: TextBlock {
     content: @md ## Default table styles;;
   }
+  theme: H.themes.midnight
 }
