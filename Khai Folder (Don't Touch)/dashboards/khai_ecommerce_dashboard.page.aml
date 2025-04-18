@@ -166,18 +166,20 @@ Dashboard khai_ecommerce_dashboard {
   }
   block v5: VizBlock {
     label: 'Revenue by Status'
-    viz: DataTable {
+    viz: PivotTable {
       dataset: khai_ecommerce
       theme {
 
       }
-      fields: [
+      rows: [
         VizFieldFull {
           ref: ref('orders', 'status')
           format {
             type: 'text'
           }
-        },
+        }
+      ]
+      values: [
         VizFieldFull {
           ref: 'revenue'
           format {
@@ -187,7 +189,8 @@ Dashboard khai_ecommerce_dashboard {
         }
       ]
       settings {
-        show_row_number: true
+        show_row_total: true
+        show_column_total: true
         row_limit: 5000
         aggregate_awareness {
           enabled: true
