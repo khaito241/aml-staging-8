@@ -310,7 +310,7 @@ Dashboard khai_ecommerce_dashboard {
       layer: 1
     }
     block v2 {
-      position: pos(240, 220, 260, 140)
+      position: pos(300, 220, 260, 140)
       layer: 2
     }
     block v3 {
@@ -322,7 +322,7 @@ Dashboard khai_ecommerce_dashboard {
       layer: 4
     }
     block v5 {
-      position: pos(440, 380, 380, 300)
+      position: pos(440, 380, 380, 200)
       layer: 5
     }
     block v6 {
