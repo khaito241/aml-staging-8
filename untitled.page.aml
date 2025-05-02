@@ -36,7 +36,7 @@ Dashboard untitled {
       position: pos(20, 20, 1160, 120)
     }
     block guide {
-      position: pos(20, 160, 1160, 660)
+      position: pos(20, 140, 1160, 660)
     }
     mobile {
       mode: 'auto'
@@ -44,5 +44,4 @@ Dashboard untitled {
   }
 
   theme: H.themes.vanilla
-
 }
