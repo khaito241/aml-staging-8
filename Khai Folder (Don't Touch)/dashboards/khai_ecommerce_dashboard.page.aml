@@ -1,4 +1,4 @@
-Dashboard khai_ecommerce_dashboard {
+Dashboard khai_ecommerce_dashboard1 {
   title: 'Ecommerce Dashboard (by Khai)'
   description: ''''''
   block title: TextBlock {
