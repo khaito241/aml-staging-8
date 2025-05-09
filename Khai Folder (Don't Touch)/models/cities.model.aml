@@ -1,8 +1,8 @@
-Model public_persisted_cities {
+Model cities {
   type: 'table'
   label: 'Cities'
   description: ''
-  data_source_name: 'development_2'
+  data_source_name: 'demodb'
   dimension id {
     label: 'Id'
     type: 'number'
@@ -10,8 +10,9 @@ Model public_persisted_cities {
     definition: @sql {{ #SOURCE.id }};;
   }
   dimension name {
-    label: 'City'
+    label: 'Name'
     type: 'text'
+    hidden: false
     definition: @sql {{ #SOURCE.name }};;
   }
   dimension country_code {
@@ -21,6 +22,6 @@ Model public_persisted_cities {
     definition: @sql {{ #SOURCE.country_code }};;
   }
 
-  owner: 'phuong.nl@holistics.io'
-  table_name: '"public"."persisted_cities"'
+  owner: 'khai.to@holistics.io'
+  table_name: '"ecommerce"."cities"'
 }

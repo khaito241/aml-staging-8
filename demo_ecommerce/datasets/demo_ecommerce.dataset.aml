@@ -9,7 +9,7 @@ Dataset demo_ecommerce {
   data_source_name: 'demodb'
 
   view {
-		model ecommerce_products { } // DISPLAY ALL FIELDS FROM MODEL "Products"
+		model ecommerce_products { } // DISPLAY ALL FIELDS FROM MODEL "Products" only
 
 		model ecommerce_users {
 			// DISPLAY SELECTED FIELDS FROM MODEL "Customers"

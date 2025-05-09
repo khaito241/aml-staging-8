@@ -1,0 +1,469 @@
+Dashboard new_reporting_dac {
+  title: 'tables tables tables'
+  description: ''''''
+  view: CanvasLayout {
+    label: 'View 1'
+    width: 1240
+    height: 2300
+    block v3 {
+      position: pos(670, 40, 540, 310)
+    }
+    block v4 {
+      position: pos(30, 40, 590, 310)
+    }
+    block v5 {
+      position: pos(30, 420, 1190, 480)
+      layer: 1
+    }
+    block v6 {
+      position: pos(30, 1330, 1170, 460)
+      layer: 1
+    }
+    block v7 {
+      position: pos(30, 930, 1170, 270)
+      layer: 2
+    }
+    block v8 {
+      position: pos(30, 1830, 1000, 310)
+      layer: 1
+    }
+    block t1 {
+      position: pos(30, 1260, 310, 50)
+      layer: 3
+    }
+  }
+  block v3: VizBlock {
+    label: 'ád'
+    viz: DataTable {
+      dataset: _123
+      theme {
+        table {
+          general {
+            borders {
+              outer: true
+              row_header: true
+            }
+          }
+        }
+      }
+      fields: [
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'city_id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'name')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'city_id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v4: VizBlock {
+    label: 'ádc'
+    viz: DataTable {
+      dataset: _123
+      theme {
+        table {
+          general {
+            bg_color: 'pink'
+            banding_color: 'trasparent'
+            font_size: 12
+            cell_padding {
+              top: 5
+              left: 4
+              bottom: 5
+              right: 4
+            }
+          }
+        }
+      }
+      fields: [
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'total_orders_count')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'created_date')
+          format {
+            type: 'date'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'discount')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'delivered_orders_count')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+          uname: 'custom_delivered_orders_count'
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'cancelled_orders_count')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        row_height: 'multiple_lines'
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        column_styles: [
+          ColumnStyle {
+            key: 'custom_delivered_orders_count'
+            width: 77
+          }
+        ]
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v5: VizBlock {
+    label: 'pivot'
+    viz: PivotTable {
+      dataset: _123
+      theme {
+        table {
+          general {
+            bg_color: '#C5E8E7'
+            borders {
+              outer: true
+              vertical: true
+              horizontal: true
+              header: true
+              row_header: true
+            }
+          }
+          header {
+            bg_color: 'blue'
+          }
+          row_header {
+            bg_color: 'red'
+          }
+          column_header {
+            bg_color: 'yellow'
+          }
+          sub_header {
+            bg_color: 'green'
+          }
+        }
+      }
+      rows: [
+        VizFieldFull {
+          ref: ref('ecommerce_categories', 'name')
+          format {
+            type: 'text'
+          }
+          uname: 'ecommerce_categories_name'
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_products', 'name')
+          format {
+            type: 'text'
+          }
+          uname: 'ecommerce_products_name'
+        }
+      ]
+      columns: [
+        VizFieldFull {
+          ref: ref('ecommerce_users', 'gender')
+          format {
+            type: 'text'
+          }
+        }
+      ]
+      values: [
+        VizFieldFull {
+          ref: ref('ecommerce_users', 'id')
+          aggregation: 'count'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        show_row_total: true
+        show_column_total: true
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        frozen_columns: 0
+        column_styles: [
+          ColumnStyle {
+            key: 'ecommerce_categories_name'
+            width: 133
+          },
+          ColumnStyle {
+            key: 'ecommerce_products_name'
+            width: 132
+          }
+        ]
+      }
+    }
+  }
+  block v6: VizBlock {
+    label: 'pivot (dup)'
+    viz: PivotTable {
+      dataset: _123
+      theme {
+
+      }
+      rows: [
+        VizFieldFull {
+          ref: ref('ecommerce_categories', 'name')
+          format {
+            type: 'text'
+          }
+          uname: 'ecommerce_categories_name'
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_products', 'name')
+          format {
+            type: 'text'
+          }
+          uname: 'ecommerce_products_name'
+        }
+      ]
+      columns: [
+        VizFieldFull {
+          ref: ref('ecommerce_users', 'gender')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_users', 'age_group')
+          format {
+            type: 'text'
+          }
+        }
+      ]
+      values: [
+        VizFieldFull {
+          label: 'Total Users'
+          ref: ref('ecommerce_users', 'id')
+          aggregation: 'count'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+          uname: 'count_id'
+        }
+      ]
+      settings {
+        show_row_total: true
+        show_column_total: true
+        show_sub_total: true
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        frozen_columns: 2
+        column_styles: [
+          ColumnStyle {
+            key: 'ecommerce_categories_name'
+            width: 127
+          },
+          ColumnStyle {
+            key: 'ecommerce_products_name'
+            width: 199
+          },
+          ColumnStyle {
+            key: 'count_id'
+            width: 104
+          }
+        ]
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v7: VizBlock {
+    label: 'metric sheet'
+    viz: MetricSheet {
+      dataset: _123
+      theme {
+        table {
+          general {
+            bg_color: '#FEDBDB'
+            borders {
+              outer: true
+              header: true
+              row_header: true
+            }
+          }
+        }
+      }
+      date_field: VizFieldFull {
+        ref: ref('ecommerce_merchants', 'created_at')
+        transformation: 'datetrunc year'
+        format {
+          type: 'date'
+          pattern: 'yyyy'
+        }
+      }
+      rows: [
+        MetricSeries {
+          field: VizFieldFull {
+            label: 'Total Users'
+            ref: ref('ecommerce_users', 'id')
+            aggregation: 'count'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+          settings {
+            mark_type: 'line'
+          }
+        },
+        MetricSeries {
+          field: VizFieldFull {
+            label: 'Total Merchants'
+            ref: ref('ecommerce_merchants', 'id')
+            aggregation: 'count'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+        },
+        MetricSeries {
+          field: VizFieldFull {
+            label: 'Total Products'
+            ref: ref('ecommerce_products', 'id')
+            aggregation: 'count'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+          settings {
+            mark_type: 'line'
+          }
+        },
+        MetricHeading {
+          label: 'Heading'
+          settings {
+            background_color: '#255DD4'
+            text_color: '#F8DDC4'
+          }
+        }
+      ]
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v8: VizBlock {
+    label: 'ád'
+    viz: DataTable {
+      dataset: _123
+      theme {
+
+      }
+      fields: [
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'city_id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'name')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'city_id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_merchants', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+          uname: 'ecommerce_merchants_id'
+        }
+      ]
+      settings {
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        column_styles: [
+          ColumnStyle {
+            key: 'ecommerce_merchants_id'
+            width: 120
+          }
+        ]
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block t1: TextBlock {
+    content: @md ## Default table styles;;
+  }
+  theme: H.themes.midnight
+}

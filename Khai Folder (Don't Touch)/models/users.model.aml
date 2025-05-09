@@ -1,13 +1,19 @@
-Model public_persisted_users {
+Model users {
   type: 'table'
   label: 'Users'
   description: ''
-  data_source_name: 'development_2'
+  data_source_name: 'demodb'
   dimension id {
     label: 'Id'
     type: 'number'
     hidden: false
     definition: @sql {{ #SOURCE.id }};;
+  }
+  dimension sign_up_date {
+    label: 'Sign Up Date'
+    type: 'date'
+    hidden: false
+    definition: @sql {{ #SOURCE.sign_up_date }};;
   }
   dimension sign_up_at {
     label: 'Sign Up At'
@@ -51,7 +57,20 @@ Model public_persisted_users {
     hidden: false
     definition: @sql {{ #SOURCE.city_id }};;
   }
+  dimension full_name {
+    label: 'Full Name'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.full_name }};;
+  }
 
-  owner: 'phuong.nl@holistics.io'
-  table_name: '"public"."persisted_users"'
+  measure total_users {
+    label: 'Total Users'
+    type: 'number'
+    definition: @sql {{id}} ;;
+    aggregation_type: 'count'
+  }
+
+  owner: 'khai.to@holistics.io'
+  table_name: '"ecommerce"."users"'
 }
