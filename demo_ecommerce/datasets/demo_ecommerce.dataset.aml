@@ -1,5 +1,6 @@
 Dataset demo_ecommerce {
   label: 'Ecommerce'
+	description: 'new description to test PR'
   models: [ecommerce_users, ecommerce_products, ecommerce_orders, ecommerce_order_items, dim_dates]
   relationships: [
 		relationship(ecommerce_orders.user_id > ecommerce_users.id, true),
