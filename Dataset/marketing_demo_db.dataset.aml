@@ -1,4 +1,4 @@
-Dataset marketing_demo_db {
+Dataset marketing_demo_db1 {
   label: 'Marketing Demo Db'
   description: ''
   data_source_name: 'demodb'

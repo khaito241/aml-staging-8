@@ -1,0 +1,18 @@
+Dashboard untitled {
+  title: 'Untitled'
+  description: ''''''
+
+  view: TabLayout {
+    label: 'View 1'
+    tab tab2: CanvasLayout {
+      label: 'Tab 2'
+      height: 800
+      grid_size: 20
+      mobile {
+        mode: 'auto'
+      }
+    }
+  }
+
+  theme: H.themes.vanilla
+}

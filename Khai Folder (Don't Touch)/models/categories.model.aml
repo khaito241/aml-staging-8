@@ -1,8 +1,8 @@
-Model public_persisted_categories {
+Model categories {
   type: 'table'
   label: 'Categories'
   description: ''
-  data_source_name: 'development_2'
+  data_source_name: 'demodb'
   dimension id {
     label: 'Id'
     type: 'number'
@@ -10,8 +10,9 @@ Model public_persisted_categories {
     definition: @sql {{ #SOURCE.id }};;
   }
   dimension name {
-    label: 'Category'
+    label: 'Name'
     type: 'text'
+    hidden: false
     definition: @sql {{ #SOURCE.name }};;
   }
   dimension parent_id {
@@ -21,6 +22,6 @@ Model public_persisted_categories {
     definition: @sql {{ #SOURCE.parent_id }};;
   }
 
-  owner: 'phuong.nl@holistics.io'
-  table_name: '"public"."persisted_categories"'
+  owner: 'khai.to@holistics.io'
+  table_name: '"ecommerce"."categories"'
 }

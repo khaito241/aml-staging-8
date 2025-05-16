@@ -1,0 +1,347 @@
+Dashboard khai_ecommerce_dashboard {
+  title: 'Ecommerce Dashboard (by Khai)'
+  description: ''''''
+  block title: TextBlock {
+    content: @md # Ecommerce Dashboard;;
+  }
+  block v1: VizBlock {
+    label: 'Revenue compared with Revenue (Prev. 1m)'
+    viz: MetricKpi {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('orders', 'created_at')
+        operator: 'matches'
+        value: 'this month'
+      }
+      theme {
+
+      }
+      value: VizFieldFull {
+        ref: 'revenue'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      compare_value: VizPopSettings {
+        field: ref('orders', 'created_at')
+        duration: 1
+        granularity: 'month'
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        alignment: 'left'
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v2: VizBlock {
+    label: 'Total Orders'
+    viz: MetricKpi {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('orders', 'created_at')
+        operator: 'matches'
+        value: 'this month'
+      }
+      theme {
+
+      }
+      value: VizFieldFull {
+        ref: 'total_orders'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      compare_value: VizPopSettings {
+        field: ref('orders', 'created_at')
+        duration: 1
+        granularity: 'month'
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        alignment: 'left'
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v3: VizBlock {
+    label: 'Aov'
+    viz: MetricKpi {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('orders', 'created_at')
+        operator: 'matches'
+        value: 'this month'
+      }
+      theme {
+
+      }
+      value: VizFieldFull {
+        ref: 'aov'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      compare_value: VizPopSettings {
+        field: ref('orders', 'created_at')
+        duration: 1
+        granularity: 'month'
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        alignment: 'left'
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v4: VizBlock {
+    label: 'Revenue Over Time'
+    viz: LineChart {
+      dataset: khai_ecommerce
+      theme {
+
+      }
+      x_axis: VizFieldFull {
+        ref: ref('orders', 'created_at')
+        transformation: 'datetrunc month'
+        format {
+          type: 'date'
+          pattern: 'LLL yyyy'
+        }
+      }
+      y_axis {
+        series {
+          field: VizFieldFull {
+            ref: 'revenue'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+        }
+        series {
+          field: VizFieldFull {
+            label: 'Trend line of Revenue'
+            ref: 'revenue'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+            analytic: RegressionLine {
+              type: 'linear'
+            }
+          }
+          settings {
+            line_style: 'dashed'
+          }
+        }
+      }
+      settings {
+        row_limit: 5000
+        x_axis_show_null_datetime: false
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v5: VizBlock {
+    label: 'Revenue by Status'
+    viz: PivotTable {
+      dataset: khai_ecommerce
+      theme {
+
+      }
+      rows: [
+        VizFieldFull {
+          ref: ref('orders', 'status')
+          format {
+            type: 'text'
+          }
+        }
+      ]
+      values: [
+        VizFieldFull {
+          ref: 'revenue'
+          format {
+            type: 'number'
+            pattern: '#,###'
+          }
+        }
+      ]
+      settings {
+        show_row_total: true
+        show_column_total: true
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v6: VizBlock {
+    label: 'Top Selling Products'
+    viz: BarChart {
+      dataset: khai_ecommerce
+      filter {
+        field: ref('products', 'name')
+        operator: 'top'
+        value: 5
+        options {
+          rank_by {
+            field: 'revenue'
+            aggregation: 'custom'
+            logic: 'standard'
+          }
+        }
+      }
+      theme {
+
+      }
+      x_axis: VizFieldFull {
+        label: 'Product Name'
+        ref: ref('products', 'name')
+        format {
+          type: 'text'
+        }
+      }
+      y_axis {
+        series {
+          field: VizFieldFull {
+            ref: 'revenue'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+          settings {
+            color: '#18A59E'
+          }
+        }
+      }
+      settings {
+        row_limit: 5000
+        x_axis_label: 'Product Name'
+        x_axis_show_null_datetime: false
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v7: VizBlock {
+    label: 'Sales by Category'
+    viz: PieChart {
+      dataset: khai_ecommerce
+      theme {
+
+      }
+      legend: VizFieldFull {
+        label: 'Category'
+        ref: ref('categories', 'name')
+        format {
+          type: 'text'
+        }
+      }
+      series {
+        field: VizFieldFull {
+          ref: 'revenue'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      }
+      settings {
+        row_limit: 5000
+        legend_label: 'hidden'
+        group_values_into: 7
+        data_label_position: 'outside'
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block f1: FilterBlock {
+    label: 'Filter'
+    type: 'field'
+    source: FieldFilterSource {
+      dataset: khai_ecommerce
+      field: ref('orders', 'created_at')
+    }
+    default {
+      operator: 'matches'
+      value: '$H_NIL$'
+    }
+  }
+
+  view: CanvasLayout {
+    label: 'View 1'
+    height: 1060
+    grid_size: 20
+    block title {
+      position: pos(20, 20, 800, 80)
+    }
+    block v1 {
+      position: pos(20, 220, 260, 140)
+      layer: 1
+    }
+    block v2 {
+      position: pos(520, 40, 260, 140)
+      layer: 2
+    }
+    block v3 {
+      position: pos(300, 60, 240, 140)
+      layer: 3
+    }
+    block v4 {
+      position: pos(20, 380, 400, 300)
+      layer: 4
+    }
+    block v5 {
+      position: pos(440, 380, 380, 200)
+      layer: 5
+    }
+    block v6 {
+      position: pos(20, 700, 400, 340)
+      layer: 6
+    }
+    block v7 {
+      position: pos(440, 700, 380, 340)
+      layer: 7
+    }
+    block f1 {
+      position: pos(20, 120, 300, 80)
+      layer: 8
+    }
+    mobile {
+      mode: 'auto'
+    }
+    width: 860
+  }
+
+  theme: H.themes.classic
+}

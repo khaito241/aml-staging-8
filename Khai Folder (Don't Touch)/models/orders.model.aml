@@ -1,13 +1,19 @@
-Model public_persisted_orders {
+Model orders {
   type: 'table'
   label: 'Orders'
   description: ''
-  data_source_name: 'development_2'
+  data_source_name: 'demodb'
   dimension id {
     label: 'Id'
     type: 'number'
     hidden: false
     definition: @sql {{ #SOURCE.id }};;
+  }
+  dimension status {
+    label: 'Status'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.status }};;
   }
   dimension created_at {
     label: 'Created At'
@@ -15,18 +21,11 @@ Model public_persisted_orders {
     hidden: false
     definition: @sql {{ #SOURCE.created_at }};;
   }
-
-  dimension status {
-    label: 'Status'
-    type: 'text'
-    hidden: false
-    definition: @sql {{ #SOURCE.status }};;
-  }
-  dimension delivery_attempts {
-    label: 'Delivery Attempts'
+  dimension user_id {
+    label: 'User Id'
     type: 'number'
     hidden: false
-    definition: @sql {{ #SOURCE.delivery_attempts }};;
+    definition: @sql {{ #SOURCE.user_id }};;
   }
   dimension discount {
     label: 'Discount'
@@ -34,13 +33,13 @@ Model public_persisted_orders {
     hidden: false
     definition: @sql {{ #SOURCE.discount }};;
   }
-  dimension user_id {
-    label: 'User Id'
+  dimension delivery_attempts {
+    label: 'Delivery Attempts'
     type: 'number'
     hidden: false
-    definition: @sql {{ #SOURCE.user_id }};;
+    definition: @sql {{ #SOURCE.delivery_attempts }};;
   }
 
-  owner: 'phuong.nl@holistics.io'
-  table_name: '"public"."persisted_orders"'
+  owner: 'khai.to@holistics.io'
+  table_name: '"ecommerce"."orders"'
 }
