@@ -297,51 +297,197 @@ Dashboard khai_ecommerce_dashboard {
       value: '$H_NIL$'
     }
   }
+  block v8: VizBlock {
+    label: 'Test 2'
+    viz: DataTable {
+      dataset: khai_ecommerce
+      theme {
 
-  view: CanvasLayout {
+      }
+      fields: [
+        VizFieldFull {
+          ref: 'revenue'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: 'total_orders'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: 'aov'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+
+  view: TabLayout {
     label: 'View 1'
-    height: 1060
-    grid_size: 20
-    block title {
-      position: pos(20, 20, 800, 80)
+    tab tab1: CanvasLayout {
+      label: 'Tab 1'
+      width: 860
+      height: 1060
+      grid_size: 20
+      block title {
+        position: pos(20, 20, 800, 80)
+      }
+      block v1 {
+        position: pos(20, 220, 260, 140)
+        layer: 1
+      }
+      block v2 {
+        position: pos(520, 40, 260, 140)
+        layer: 2
+      }
+      block v3 {
+        position: pos(300, 60, 240, 140)
+        layer: 3
+      }
+      block v4 {
+        position: pos(20, 380, 400, 300)
+        layer: 4
+      }
+      block v5 {
+        position: pos(440, 380, 380, 200)
+        layer: 5
+      }
+      block v6 {
+        position: pos(20, 700, 400, 340)
+        layer: 6
+      }
+      block v7 {
+        position: pos(440, 700, 380, 340)
+        layer: 7
+      }
+      block f1 {
+        position: pos(20, 120, 300, 80)
+        layer: 8
+      }
+      mobile {
+        mode: 'auto'
+      }
     }
-    block v1 {
-      position: pos(20, 220, 260, 140)
-      layer: 1
+    tab tab2: CanvasLayout {
+      label: 'Tab 2'
+      height: 800
+      grid_size: 20
+      mobile {
+        mode: 'auto'
+      }
+      block v8 {
+        position: pos(20, 20, 400, 300)
+        layer: 1
+      }
     }
-    block v2 {
-      position: pos(520, 40, 260, 140)
-      layer: 2
-    }
-    block v3 {
-      position: pos(300, 60, 240, 140)
-      layer: 3
-    }
-    block v4 {
-      position: pos(20, 380, 400, 300)
-      layer: 4
-    }
-    block v5 {
-      position: pos(440, 380, 380, 200)
-      layer: 5
-    }
-    block v6 {
-      position: pos(20, 700, 400, 340)
-      layer: 6
-    }
-    block v7 {
-      position: pos(440, 700, 380, 340)
-      layer: 7
-    }
-    block f1 {
-      position: pos(20, 120, 300, 80)
-      layer: 8
-    }
-    mobile {
-      mode: 'auto'
-    }
-    width: 860
   }
 
   theme: H.themes.classic
+  interactions: [
+    FilterInteraction {
+      from: 'v1'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v2'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v3'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v4'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v5'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v6'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v7'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'f1'
+      to: [
+        CustomMapping {
+          block: 'v8'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'v8'
+      to: [
+        CustomMapping {
+          block: [
+            'v1',
+            'v2',
+            'v3',
+            'v4',
+            'v5',
+            'v6',
+            'v7'
+          ]
+          disabled: true
+        }
+      ]
+    }
+  ]
 }
