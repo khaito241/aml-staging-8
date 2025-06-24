@@ -103,85 +103,6 @@ This dashboard tracks the KPIs of all managers for their respective teams. This 
       }
     }
   }
-  block v6: VizBlock {
-    label: 'Top selling products'
-    viz: DataTable {
-      dataset: demo_ecommerce
-      filter {
-        field: ref('ecommerce_orders', 'created_at')
-        operator: 'matches'
-        value: '2023'
-      }
-      fields: [
-        VizFieldFull {
-          ref: ref('ecommerce_products', 'product_google_link')
-          format {
-            type: 'html'
-          }
-        },
-        VizFieldFull {
-          label: 'Product Image'
-          ref: ref('ecommerce_products', 'product_image')
-          format {
-            type: 'html'
-          }
-        },
-        VizFieldFull {
-          ref: ref('ecommerce_orders', 'discount')
-          aggregation: 'avg'
-          format {
-            type: 'number'
-            pattern: '#,###0.00%'
-            group_separator: ','
-            decimal_separator: '.'
-          }
-        },
-        VizFieldFull {
-          ref: 'total_orders'
-          format {
-            type: 'number'
-            pattern: 'inherited'
-          }
-        },
-        VizFieldFull {
-          ref: 'gmv'
-          format {
-            type: 'number'
-            pattern: 'inherited'
-          }
-          uname: 'custom_gmv'
-        }
-      ]
-      settings {
-        row_height: 'multiple_lines'
-        sorts: [
-          SortSetting {
-            field_index: 4
-            direction: 'desc'
-          }
-        ]
-        conditional_formats: [
-          ConditionalFormat {
-            key: 'custom_gmv'
-            format: ScaleFormat {
-              min {
-                value: 0
-                color: '#D3DFF6'
-              }
-              max {
-                value: 100000
-                color: '#255DD4'
-              }
-            }
-          }
-        ]
-        aggregate_awareness {
-          enabled: true
-          debug_comments: true
-        }
-      }
-    }
-  }
   block v7: VizBlock {
     label: 'Cohort Retention'
     viz: RetentionHeatmap {
@@ -849,9 +770,6 @@ This dashboard tracks the KPIs of all managers for their respective teams. This 
     }
     block v2_dup_dup {
       position: pos(460, 1700, 380, 500)
-    }
-    block v6 {
-      position: pos(860, 1700, 680, 500)
     }
     block v7 {
       position: pos(80, 2780, 1460, 440)
